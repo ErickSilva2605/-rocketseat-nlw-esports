@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Image, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
 
 import logoImage from '../../assets/logo-nlw-esports.png';
 import { Background } from '../../components/Background';
@@ -15,8 +15,8 @@ export function Home() {
 
   const navigation = useNavigation();
 
-  function handleOpenGame() {
-    navigation.navigate('game');
+  function handleOpenGame({ id, title, bannerUrl }: GameCardProps) {
+    navigation.navigate('game', { id, title, bannerUrl });
   }
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function Home() {
           renderItem={({ item }) =>
             <GameCard
               data={item}
-              onPress={handleOpenGame}
+              onPress={() => handleOpenGame(item)}
             />
           }
           showsHorizontalScrollIndicator={false}
