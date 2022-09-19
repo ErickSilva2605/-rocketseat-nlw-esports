@@ -2,8 +2,7 @@ import {
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
-  ImageBackground,
-  ImageSourcePropType
+  ImageBackground
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { THEME } from '../../theme';

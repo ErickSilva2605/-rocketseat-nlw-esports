@@ -30,5 +30,13 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 180,
     borderRadius: 8
+  },
+  listContainer: {
+    width: '100%'
+  },
+  listContent: {
+    paddingLeft: 32,
+    paddingRight: 34,
+    alignItems: 'flex-start',
   }
 });
