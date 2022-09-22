@@ -18,6 +18,7 @@ export function CreateAdModal() {
   const [games, setGames] = useState<Game[]>([]);
   const [weekDays, setWeekDays] = useState<string[]>([]);
   const [useVoiceChannel, setUseVoiceChannel] = useState(false);
+  const [gameSelected, setGameSelected] = useState<string>("");
 
   useEffect(() => {
     axios('http://localhost:3333/games').then(response => {
@@ -36,7 +37,7 @@ export function CreateAdModal() {
     }
 
     try {
-      await axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+      await axios.post(`http://localhost:3333/games/${gameSelected}/ads`, {
         name: data.name,
         yearsPlaying: Number(data.yearsPlaying),
         discord: data.discord,
@@ -62,17 +63,47 @@ export function CreateAdModal() {
         <form onSubmit={handleCreateAd} className="mt-8 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="game" className="font-semibold">Qual o game?</label>
-            <select
-              name="game"
-              id="game"
-              className="bg-zinc-900 py-3 px-4 rounded text-sm placeholder:text-zinc-500 appearance-none"
-              defaultValue=""
+            <Select.Root
+              onValueChange={setGameSelected}
             >
-              <option disabled value="">Selecione o game que deseja jogar</option>
-              {games.map(game => {
-                return <option key={game.id} value={game.id}>{game.title}</option>
-              })}
-            </select>
+              <Select.Trigger
+                id="name"
+                name="game"
+                aria-label="Game"
+                className={`bg-zinc-900 py-3 px-4 rounded text-small border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none flex justify-between text-sm items-center ${gameSelected ? 'text-white' : 'text-zinc-500'}`}
+              >
+                <Select.Value placeholder="Selecione o game que deseja jogar" />
+                <Select.Icon>
+                  <CaretDown className="w-6 h-6 text-zinc-500" />
+                </Select.Icon>
+              </Select.Trigger>
+              <Select.Portal>
+                <Select.Content className="bg-zinc-900 rounded overflow-hidden">
+                  <Select.ScrollUpButton className="flex items-center justify-center">
+                    <CaretUp className="w-4 h-4 text-zinc-400" />
+                  </Select.ScrollUpButton>
+                  <Select.Viewport className="py-2 px-1">
+                    {games.map(game => {
+                      return (
+                        <Select.Item
+                          key={game.id}
+                          value={game.id}
+                          className="flex items-center justify-between py-2 px-3 m-1 bg-zinc-900 text-zinc-500 cursor-pointer rounded hover:bg-violet-500 hover:text-white"
+                        >
+                          <Select.ItemText>{game.title}</Select.ItemText>
+                          <Select.ItemIndicator className="hover:text-white">
+                            <Check className="w-6 h-6" />
+                          </Select.ItemIndicator>
+                        </Select.Item>
+                      )
+                    })}
+                  </Select.Viewport>
+                  <Select.ScrollDownButton className="flex items-center justify-center">
+                    <CaretDown className="w-4 h-4 text-zinc-400" />
+                  </Select.ScrollDownButton>
+                </Select.Content>
+              </Select.Portal>
+            </Select.Root>
           </div>
 
           <div className="flex flex-col gap-2">
@@ -116,49 +147,49 @@ export function CreateAdModal() {
                 <ToggleGroup.Item
                   value="0"
                   title="Domingo"
-                  className={`w-8 h-8 rounded ${weekDays.includes('0') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('0') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   D
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="1"
                   title="Segunda"
-                  className={`w-8 h-8 rounded ${weekDays.includes('1') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('1') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   S
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="2"
                   title="Terça"
-                  className={`w-8 h-8 rounded ${weekDays.includes('2') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('2') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   T
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="3"
                   title="Quarta"
-                  className={`w-8 h-8 rounded ${weekDays.includes('3') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('3') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   Q
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="4"
                   title="Quinta"
-                  className={`w-8 h-8 rounded ${weekDays.includes('4') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('4') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   Q
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="5"
                   title="Sext"
-                  className={`w-8 h-8 rounded ${weekDays.includes('5') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('5') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   S
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="6"
                   title="Sábado"
-                  className={`w-8 h-8 rounded ${weekDays.includes('6') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('6') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   S
                 </ToggleGroup.Item>
@@ -172,7 +203,8 @@ export function CreateAdModal() {
                 <Input
                   name="hourStart"
                   id="hourStart"
-                  type="time" placeholder="De"
+                  type="time"
+                  placeholder="De"
                 />
                 <Input
                   name="hourEnd"
@@ -194,9 +226,9 @@ export function CreateAdModal() {
                   setUseVoiceChannel(false);
                 }
               }}
-              className="w-6 h-6 p-1 rounded bg-zinc-900"
+              className="w-7 h-7 p-1 rounded bg-zinc-900 border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none"
             >
-              <Checkbox.Indicator>
+              <Checkbox.Indicator className="flex items-center justify-center">
                 <Check className="h-4 w-4 text-emerald-400" />
               </Checkbox.Indicator>
             </Checkbox.Root>
