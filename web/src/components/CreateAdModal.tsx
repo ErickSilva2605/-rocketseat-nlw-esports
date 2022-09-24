@@ -67,10 +67,10 @@ export function CreateAdModal() {
               onValueChange={setGameSelected}
             >
               <Select.Trigger
-                id="name"
+                id="game"
                 name="game"
                 aria-label="Game"
-                className={`bg-zinc-900 py-3 px-4 rounded text-small border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none flex justify-between text-sm items-center ${gameSelected ? 'text-white' : 'text-zinc-500'}`}
+                className={`bg-zinc-900 py-3 px-4 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none flex justify-between text-sm items-center ${gameSelected ? 'text-white' : 'text-zinc-500'}`}
               >
                 <Select.Value placeholder="Selecione o game que deseja jogar" />
                 <Select.Icon>
@@ -88,7 +88,7 @@ export function CreateAdModal() {
                         <Select.Item
                           key={game.id}
                           value={game.id}
-                          className="flex items-center justify-between py-2 px-3 m-1 bg-zinc-900 text-zinc-500 cursor-pointer rounded hover:bg-violet-500 hover:text-white"
+                          className="flex items-center justify-between py-2 px-3 m-0.5 bg-zinc-900 text-zinc-500 cursor-pointer rounded hover:bg-violet-500 hover:text-white"
                         >
                           <Select.ItemText>{game.title}</Select.ItemText>
                           <Select.ItemIndicator className="hover:text-white">
@@ -147,49 +147,49 @@ export function CreateAdModal() {
                 <ToggleGroup.Item
                   value="0"
                   title="Domingo"
-                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('0') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none ${weekDays.includes('0') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   D
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="1"
                   title="Segunda"
-                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('1') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none ${weekDays.includes('1') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   S
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="2"
                   title="Terça"
-                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('2') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none ${weekDays.includes('2') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   T
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="3"
                   title="Quarta"
-                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('3') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none ${weekDays.includes('3') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   Q
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="4"
                   title="Quinta"
-                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('4') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none ${weekDays.includes('4') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   Q
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="5"
                   title="Sext"
-                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('5') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none ${weekDays.includes('5') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   S
                 </ToggleGroup.Item>
                 <ToggleGroup.Item
                   value="6"
                   title="Sábado"
-                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:ring-violet-500 focus:outline-none ${weekDays.includes('6') ? 'bg-violet-500' : 'bg-zinc-900'}`}
+                  className={`w-8 h-8 rounded border-2 border-transparent focus:border-violet-500 focus:outline-none ${weekDays.includes('6') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                 >
                   S
                 </ToggleGroup.Item>
